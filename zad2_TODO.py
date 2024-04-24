@@ -45,12 +45,16 @@ def create_binary_tree(node_values: List[str]):
 
     return root
 
+def glorec(root: Optional[Node], level: int, list: list[list[int]]) -> list[list[int]]:
+    if root is not None:
+        if len(list) < level + 1:
+            list.append([])
+        list[level].append(root.val)
+        list = glorec(root.right, level + 1, glorec(root.left, level + 1, list))
+    return list
 
 def get_level_order(root: Optional[Node]) -> List[List[int]]:
-    # TODO: Dane jest drzewo binarne z korzeniem  root. 
-    # Zadanie polega na przejściu drzewa poziomami od korzenia w dół, 
-    # od lewej do prawej i zapisać proces przechodzenia drzewa.
-    pass
+    return glorec(root, 0, [[]])
 
 # nie zmieniaj poniższego kodu
 if __name__ == "__main__":

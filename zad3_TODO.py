@@ -47,9 +47,10 @@ def create_binary_tree(node_values: List[str]):
 
 
 def get_lowest_common_ancestor(root: Optional[Node], p: int, q: int) -> int:
-    # TODO: Dany jest korzeń drzewa BST root oraz wartości dwóch węzłów znajdujących się
-    # w tym drzewie (p i q). Znajdź najniższego wspólnego przodka węzłów p i q.
-    pass
+    if p <= root.val <= q or p >= root.val >= q:
+        return root.val
+    return get_lowest_common_ancestor(root.left, p, q) if p < root.val else get_lowest_common_ancestor(root.right, p, q)
+
 
 
 # nie zmieniaj poniższego kodu

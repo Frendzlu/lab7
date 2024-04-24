@@ -47,10 +47,11 @@ def create_binary_tree(node_values: List[str]):
 
 
 def has_path_sum(root: Optional[Node], target: int) -> bool:
-    # TODO: Dane jest drzewo binarne o korzeniem root raz liczba całkowita target.
-    # Zwróć true, jeśli istnieje taka ścieżka w tym drzewie od korzenia do liścia,
-    # taka że suma wszystkich wartości wzdłuż tej ścieżki jest równa target.
-    pass
+    if not root:
+        return False
+    if not root.right and not root.left:
+        return target-root.val == 0
+    return has_path_sum(root.left, target-root.val) or has_path_sum(root.right, target-root.val)
 
 
 if __name__ == "__main__":
